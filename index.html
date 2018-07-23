@@ -4,7 +4,6 @@
         <meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="style.css" type="text/css" />
-		<script type="text/javascript" src="jquery.js"></script> 
 		<script type="text/javascript" src="script.js"></script>
 		<title> Kurs js </title>
 		<meta name="description" content="Modne sukienki na wesele 2018 - inspiracj.  "/>
@@ -29,19 +28,18 @@
 	<section id="task-list">
 		<div id="search">
 			<div><h3>Wyszukaj:</h3></div>
-			<input type = "text" class = "serach2"/>
+			<input type = "text" id="serach2"/>
 			<button id="search_button">Szukaj</button>
 		</div>
 		
-		<div id="search_result">
-		</div>
-		
-		<div class="new-task hidden">
+		<div class="new-task">
 			<div class="task-header">
-				<h3>Nowe zadanie z dnia: 25-04-2018 godz: 15:00</h3>
+				<h3>Nowe zadanie z dnia: 25-4-2018 godz: 15:00</h3>
 				<button class="x-button">X</button>
 			</div>
-			<div class="task-text">Zrobić zakupy.  
+			<div class="task-text">
+				<p> Zrobić zakupy.</p>
+				<button class="edit-button">Edytuj</button>  
 			</div>
 		</div>
 	</section>

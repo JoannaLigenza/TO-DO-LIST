@@ -1,6 +1,6 @@
 
 body {
-	background-color: #21c600;
+	background-color: #255dff;
 }
 
 #form-div
@@ -18,16 +18,26 @@ body {
 
 #textarea
 {
-	width: 700px;
+	width: 99%;
 	height: 150px;
 	resize: vertical;
+	font-size: 16px;
+	box-shadow: 2px 2px 5px;
+	border: 2px solid transparent;
+	
+}
+
+#textarea:focus {
+	border: 2px solid #0029a0;
 }
 
 #submit
 {
+	width: 110px;
+	height: 50px;
 	position: absolute;
 	right: 0;
-	bottom: -30px;
+	bottom: -60px;
 	box-shadow: 1px 1px 3px;
 }
 
@@ -69,11 +79,49 @@ body {
 	padding: 1px 1.1px;
 }
 
-.task-text
-{
+.task-text {
+	display: flex;
+	justify-content: space-between;
 	padding: 10px 10px;
 	max-height: 200px;
 	overflow: auto;
+	position: relative;
+}
+
+.task-text p {
+	max-width: 500px;
+	padding-bottom: 20px;
+}
+
+[contenteditable="true"]:focus {
+	border: none;
+	outline: none;
+}
+
+.edit-button {
+	width: 70px;
+	height: 30px;
+	position: absolute;
+	bottom: 20px;
+	right: 10px;
+	box-shadow: 1px 1px 3px;
+}
+
+.edit-button:active {
+	box-shadow: 2px 2px 5px;
+}
+
+.end-editing-button {
+	width: 70px;
+	height: 30px;
+	position: absolute;
+	bottom: 20px;
+	right: 90px;
+	box-shadow: 1px 1px 3px;
+}
+
+.end-editing-button:active {
+	box-shadow: 2px 2px 5px;
 }
 
 #search
@@ -83,18 +131,26 @@ body {
 	position: relative;
 }
 	
-.serach2
+#serach2
 {
-	width: 400px;
+	width: 60%;
 	height: 30px;
 	position: absolute;
 	bottom: 0;
-	right: 100px;
+	right: 120px;
+	box-shadow: 2px 2px 5px;
+	border: 2px solid transparent;
+}
+
+#serach2:focus {
+	border: 2px solid #0029a0;
 }
 
 #search_button
 {
-	width: 98px;
+	width: 110px;
+	height: 50px;
+	align-self: flex-end;
 	box-shadow: 1px 1px 3px;
 }
 
@@ -103,13 +159,39 @@ body {
 	box-shadow: 2px 2px 3px;
 }
 
-.visible
+.hidden
 {
-	display: block;
-	border: 3px solid red;
+	display: none;
 }
 
-.not_visible
-{
+@media screen and (max-width: 600px) {
 	
+	
+	#search div h3 {
+		position: absolute;
+		top: -60px;
+		left: 0;
+	}
+	
+	#serach2 {
+		left: 0;
+	}
+	
+	.task-text {
+		display: block;
+	}
+	
+	.edit-button {
+		position: relative;
+		display: inline-block;
+		left: 200px;
+	}
+	
+	.end-editing-button {
+		position: relative;
+		display: inline-block;
+		left: 50px;
+	}
+	
+
 }
