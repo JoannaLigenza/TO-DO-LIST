@@ -1,0 +1,115 @@
+
+body {
+	background-color: #21c600;
+}
+
+#form-div
+{
+	max-width: 710px;
+	height: auto;
+	margin: 0 auto;
+}
+
+#form
+{
+	width: 100%;
+	position: relative;
+}
+
+#textarea
+{
+	width: 700px;
+	height: 150px;
+	resize: vertical;
+}
+
+#submit
+{
+	position: absolute;
+	right: 0;
+	bottom: -30px;
+	box-shadow: 1px 1px 3px;
+}
+
+#submit:active{
+	box-shadow: 2px 2px 3px;
+}
+
+#task-list
+{
+	max-width: 710px;
+	height: auto;
+	margin: 100px auto;
+}
+
+.new-task
+{
+	max-width: 710px;
+	height: auto;
+	margin: 10px 0;
+	box-shadow: 2px 2px 5px;
+	background-color: white;
+}
+	
+.task-header
+{	
+	display: flex;
+	justify-content: space-between;
+}
+
+.task-header h3
+{
+	padding: 0 10px;
+}
+
+.x-button
+{
+	width: 20px;
+	height: 20px;
+	padding: 1px 1.1px;
+}
+
+.task-text
+{
+	padding: 10px 10px;
+	max-height: 200px;
+	overflow: auto;
+}
+
+#search
+{
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+}
+	
+.serach2
+{
+	width: 400px;
+	height: 30px;
+	position: absolute;
+	bottom: 0;
+	right: 100px;
+}
+
+#search_button
+{
+	width: 98px;
+	box-shadow: 1px 1px 3px;
+}
+
+#search_button:active
+{
+	box-shadow: 2px 2px 3px;
+}
+
+.visible
+{
+	display: block;
+	border: 3px solid red;
+}
+
+.not_visible
+{
+	
+}

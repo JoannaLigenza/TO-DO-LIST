@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="style.css" type="text/css" />
+		<script type="text/javascript" src="jquery.js"></script> 
+		<script type="text/javascript" src="script.js"></script>
+		<title> Kurs js </title>
+		<meta name="description" content="Modne sukienki na wesele 2018 - inspiracj.  "/>
+        
+        <!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->       
+    </head>
+
+<body>
+	<!-- FORMULARZ DODAWANIA NOWEGO ZADANIA -->
+	<div id="form-div">
+		<form id="form">
+			<h2> Wpisz zadanie: </h2>
+			<label for="textarea"></label>
+			<textarea id="textarea" name="textarea"></textarea>
+			<button id="submit">Dodaj zadanie</button>
+		</form>	
+	</div>
+	
+	<!-- LISTA ZADAN -->
+	<section id="task-list">
+		<div id="search">
+			<div><h3>Wyszukaj:</h3></div>
+			<input type = "text" class = "serach2"/>
+			<button id="search_button">Szukaj</button>
+		</div>
+		
+		<div id="search_result">
+		</div>
+		
+		<div class="new-task hidden">
+			<div class="task-header">
+				<h3>Nowe zadanie z dnia: 25-04-2018 godz: 15:00</h3>
+				<button class="x-button">X</button>
+			</div>
+			<div class="task-text">Zrobić zakupy.  
+			</div>
+		</div>
+	</section>
+	
+
+</body>
+</html>
