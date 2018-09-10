@@ -79,7 +79,7 @@ body {
 	padding: 1px 1.1px;
 }
 
-.task-text {
+.task {
 	display: flex;
 	justify-content: space-between;
 	padding: 10px 10px;
@@ -88,13 +88,12 @@ body {
 	position: relative;
 }
 
-.task-text p {
+.task-text {
 	max-width: 500px;
 	padding-bottom: 20px;
 }
 
 [contenteditable="true"]:focus {
-	border: none;
 	outline: none;
 }
 

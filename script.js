@@ -3,12 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	const submit_btn = document.querySelector("#submit");
 	const task_list = document.querySelector("#task-list");
+	const button_szukaj = document.querySelector("#search_button");
 
 	// Dodawanie nowego zadania
-	function add_task(form_value)
+	function add_task(form_value, form_date)
 	{
 		let date = new Date();
-		let dateText = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear() + ' godz: ' + date.getHours() + ':' + date.getMinutes();
+		let dateText = form_date || date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear() // + ' godz: ' + date.getHours() + ':' + date.getMinutes();
 		
 		// Dodawanie nowego diva z elementami zadaniowymi
 		const new_task = document.createElement("div");
@@ -21,7 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		// Dodawanie naglowka w divie z naglowkiem
 		const h3 = document.createElement("h3");
-		h3.innerText = "Nowe zadanie z dnia: " + dateText;
+		h3.innerText = form_date || "Data: " + dateText;
+		h3.classList.add("header-text");
 		
 		// Dodawanie nowego przycisku usuwajacego zadanie
 		const x_button = document.createElement("button");
@@ -30,11 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		// Dodawanie diva z treścią zadania
 		const task_text = document.createElement("div");
-		task_text.classList.add("task-text");
+		task_text.classList.add("task");
 		
 		// Dodawanie paragrafu z treścią do diva z treścią zadania
 		const task_text_paragraph = document.createElement("p");
 		task_text_paragraph.innerText = form_value;
+		task_text_paragraph.classList.add("task-text");
 		
 		// Dodawanie nowego przycisku edytującego zadanie
 		const edit_button = document.createElement("button");
@@ -49,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		task_text.appendChild(task_text_paragraph);
 		task_text.appendChild(edit_button);
 		
-		// Wrzucanie diva task-header i task-text do diva new-task
+		// Wrzucanie diva task-header i task do diva new-task
 		new_task.appendChild(task_header);
 		new_task.appendChild(task_text);
 		
@@ -65,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (text_value != ""){ 
 		add_task(text_value); 				// Wywolaj funkcje add_task
 		document.querySelector("#textarea").value = "";					// Ustaw wartosc textarea na pusta
+		
+		save_task();
 		}
 	}); 
 	
@@ -77,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		if (e.target.closest('.x-button') !== null) {
 			task_to_delete.remove();
+		save_task();
 	}}	
 	
 	task_list.addEventListener("click", delete_task);
@@ -86,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 	function edit_task(e) {	
 
-		const task_to_edit = e.target.closest(".task-text");
+		const task_to_edit = e.target.closest(".task");
 		const edit_button = e.target.closest(".edit-button");
 		const end_edit = e.target.closest(".end-editing-button");
 
@@ -105,16 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			task_to_edit.style.backgroundColor = "white";
 			e.target.previousElementSibling.disabled = false;
 			end_edit.remove();
-			
+			save_task();
 		}
 	}	
-	
-	function end_editing(e) {
-		
-		if (e.target.closest(".end-editing-button") !== null) {
-			task_to_edit.contentEditable = false;
-		}
-	}
 	
 	task_list.addEventListener("click", edit_task);
 	
@@ -122,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	//	Wyszukiwanie istniejacego zadania	
 	function search(input)
 	{
-		let my_tab = document.querySelectorAll(".task-text");					// Pobieram wszystkie teksty z zadan
+		let my_tab = document.querySelectorAll(".task");					// Pobieram wszystkie teksty z zadan
 		let my_new_task = document.querySelectorAll(".new-task");
 		
 		
@@ -141,14 +140,48 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 	
-	add_task("Skończyć projekt nowej aplikacji");
-	
-	const button_szukaj = document.querySelector("#search_button");
-
 	button_szukaj.addEventListener("click", function()
 	{ 	
 		search(document.getElementById("serach2").value);
 	})
+	
+	// Tworze storage jeśli nie istnieje, a jesli istnieje odczytuje z niego dane i robie z nich zadania
+	function init_storage() {
+		let get_storage_date = localStorage.getItem("date");
+		let get_storage_task = localStorage.getItem("task");
+		
+		if (get_storage_task === null) {
+			localStorage.setItem("date", "dzis,");
+			localStorage.setItem("task", "Zrobić zakupy,");
+			add_task("Przykładowe zadanie");
+			//console.log("get_storage" , get_storage)
+		}
+		else {
+			get_storage_date = localStorage.getItem("date").split(",");
+			get_storage_task = localStorage.getItem("task").split(",");
+			for (i=0; i < get_storage_date.length; i++) {
+				add_task(get_storage_task[i], get_storage_date[i]);
+			}
+		}
+	}
+	
+	// Zapisywanie dodanych zadań w storage
+	function save_task() {
+		const get_task_header = document.getElementsByClassName("header-text")
+		const get_task_text = document.getElementsByClassName("task-text")
+		let task_header_arr = [];
+		let task_text_arr = [];
+		
+		for (i=0; i < get_task_header.length; i++) {
+			task_header_arr.push(get_task_header[i].innerText);
+			task_text_arr.push(get_task_text[i].innerText);
+		}
+		localStorage.setItem("date", task_header_arr);
+		localStorage.setItem("task", task_text_arr);
+	}
+	
+	init_storage();
+
 });
 
 
